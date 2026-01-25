@@ -84,6 +84,8 @@ Guidelines for developing in Origo are available in the [`DEVELOPING.md`](https:
 ## Plugins
 More information about Origo plugins can be found in the [PLUGINS.md](https://github.com/origo-map/origo/blob/master/PLUGINS.md) file.
 
+For comprehensive documentation on creating your own plugins, see the [Plugin Development Guide](https://github.com/origo-map/origo/blob/master/PLUGIN-DEVELOPMENT.md).
+
 ## Copyright
 The project is licensed under the BSD 2-clause license. It is specified in the [license file](LICENSE.txt).
 
