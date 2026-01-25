@@ -689,9 +689,9 @@ Origo provides several UI components accessible via `Origo.ui`:
 #### Component
 Base component class:
 ```javascript
-import { Component } from 'Origo.ui';
+import Origo from 'Origo';
 
-const myComponent = Component({
+const myComponent = Origo.ui.Component({
   name: 'mycomponent',
   onInit() {},
   onAdd(evt) {},
@@ -701,9 +701,9 @@ const myComponent = Component({
 
 #### Button
 ```javascript
-import { Button } from 'Origo.ui';
+import Origo from 'Origo';
 
-const button = Button({
+const button = Origo.ui.Button({
   cls: 'round light',
   click() { /* handle click */ },
   icon: '#ic_home_24px',
@@ -715,9 +715,9 @@ const button = Button({
 
 #### Modal
 ```javascript
-import { Modal } from 'Origo.ui';
+import Origo from 'Origo';
 
-const modal = Modal({
+const modal = Origo.ui.Modal({
   title: 'Modal Title',
   content: '<p>Content</p>',
   target: viewer.getId(),
@@ -727,9 +727,9 @@ const modal = Modal({
 
 #### Element
 ```javascript
-import { Element as El } from 'Origo.ui';
+import Origo from 'Origo';
 
-const element = El({
+const element = Origo.ui.Element({
   tagName: 'div',
   cls: 'my-class',
   innerHTML: 'Content',
@@ -739,13 +739,13 @@ const element = El({
 
 #### dom Utilities
 ```javascript
-import { dom } from 'Origo.ui';
+import Origo from 'Origo';
 
 // Convert HTML string to element
-const el = dom.html('<div>Hello</div>');
+const el = Origo.ui.dom.html('<div>Hello</div>');
 
 // Create element
-const div = dom.createElement('div', { cls: 'my-class' });
+const div = Origo.ui.dom.createElement('div', { cls: 'my-class' });
 ```
 
 ### OpenLayers API
@@ -767,24 +767,24 @@ Origo exposes OpenLayers modules via `Origo.ol`:
 
 #### Origo.Utils
 ```javascript
-import { Utils } from 'Origo';
+import Origo from 'Origo';
 
 // Generate unique ID
-const id = Utils.generateUUID();
+const id = Origo.Utils.generateUUID();
 
 // Deep merge objects
-const merged = Utils.deepMerge(obj1, obj2);
+const merged = Origo.Utils.deepMerge(obj1, obj2);
 
 // Format numbers
-const formatted = Utils.formatNumber(1234.567, 2);
+const formatted = Origo.Utils.formatNumber(1234.567, 2);
 ```
 
 #### Origo.mapUtils
 ```javascript
-import { mapUtils } from 'Origo';
+import Origo from 'Origo';
 
 // Get features at pixel
-const features = mapUtils.getFeaturesByCoordinate({
+const features = Origo.mapUtils.getFeaturesByCoordinate({
   coordinate: [x, y],
   clusterFeatureName: 'clusterLayer',
   map: viewer.getMap(),
@@ -792,7 +792,7 @@ const features = mapUtils.getFeaturesByCoordinate({
 });
 
 // Get resolution from scale
-const resolution = mapUtils.resolutionFromScale(scale, projection);
+const resolution = Origo.mapUtils.resolutionFromScale(scale, projection);
 ```
 
 ### Loader API
@@ -1068,7 +1068,7 @@ If your plugin has CSS:
 **src/index.js**:
 ```javascript
 import './styles/myplugin.css';
-import { Component } from 'Origo.ui';
+import Origo from 'Origo';
 
 const MyPlugin = function MyPlugin(options = {}) {
   // Plugin code

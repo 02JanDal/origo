@@ -33,7 +33,7 @@ Plugins with a graphical user interface showing text and numbers can avail of th
 ## Available plugins
 Below is a list of available plugins. More information about each plugin can be found in the plugin's own repository.
 
-Please not that some plugins are third-party plugins that are neither developed nor maintained by Origo.
+Please note that some plugins are third-party plugins that are neither developed nor maintained by Origo.
 
 **[Castor plugin](https://github.com/SigtunaGIS/castor-plugin)**
 A plugin for Origo made to integrate with Castor.
