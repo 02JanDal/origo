@@ -1,30 +1,12 @@
 # Origo plugins
+Plugins are to be developed when a feature or function is not appropriate to be included in the origo core. Common reasons are external dependencies or a specific feature or function not requested by the average user. 
+## Guidelines development
 
-Plugins are to be developed when a feature or function is not appropriate to be included in the origo core. Common reasons are external dependencies or a specific feature or function not requested by the average user.
-
-## Plugin Development Guide
-
-For comprehensive documentation on creating plugins for Origo, see the **[Plugin Development Guide](PLUGIN-DEVELOPMENT.md)**. This guide includes:
-
-- Getting started with plugin development
-- Plugin architecture and lifecycle
-- Step-by-step tutorials
-- Common patterns and best practices
-- API reference
-- Localization support
-- Building with Vite
-- Testing guidelines
-- Complete examples
-
-## Quick Start
-
-**[Barebone](https://github.com/origo-map/barebone-plugin)** is an example plugin to provide an initial structure of how you can start developing your plugin.
+**[Barebone](https://github.com/origo-map/barebone-plugin)** is an example plugin to provide an initial structure of how you can start developing your plugin. 
 
 Origo core has a lot of dependencies by default which are available to use from the plugins. They should be utilized first before loading more external libraries.
 
-Smaller adjustment to the core might be necessary but should be avoided to make the plugin as standalone as possible.
-
-## Additional Resources
+Smaller adjustment to the core might be necessary but should be avoided to make the plugin as standalone as possible. 
 
 A number of Origo developer seminars were held in the second half of 2024 and first half of 2025. The presentation on plugins can be found at **[Developing in Origo part 3 - plugins](https://docs.google.com/presentation/d/13e38b81OnGhhud2t4cDxux5vXzGZYFLO/edit?usp=sharing&ouid=116035513551791915749&rtpof=true&sd=true)**.
 
@@ -33,7 +15,7 @@ Plugins with a graphical user interface showing text and numbers can avail of th
 ## Available plugins
 Below is a list of available plugins. More information about each plugin can be found in the plugin's own repository.
 
-Please note that some plugins are third-party plugins that are neither developed nor maintained by Origo.
+Please not that some plugins are third-party plugins that are neither developed nor maintained by Origo.
 
 **[Castor plugin](https://github.com/SigtunaGIS/castor-plugin)**
 A plugin for Origo made to integrate with Castor.
