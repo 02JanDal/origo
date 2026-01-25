@@ -301,6 +301,10 @@ This creates:
 
 ### Step 6: Use the Plugin
 
+There are two ways to use your plugin:
+
+#### Method 1: Configure in Config File (Recommended)
+
 In your Origo application's HTML:
 
 ```html
@@ -340,6 +344,41 @@ In your Origo config file (`index.json`):
     }
   ]
 }
+```
+
+#### Method 2: Programmatic Initialization
+
+You can also initialize the plugin programmatically after Origo loads:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="css/style.css" rel="stylesheet">
+  <title>Origo with MapInfo Plugin</title>
+</head>
+<body>
+  <div id="app-wrapper"></div>
+  <script src="js/origo.js"></script>
+  <script src="plugins/mapinfo.umd.js"></script>
+  <script>
+    var origo = Origo('index.json');
+    origo.on('load', function(viewer) {
+      var mapinfo = MapInfo({
+        buttonText: 'Show Map Info',
+        title: 'Current Map Information'
+      });
+      viewer.addComponent(mapinfo);
+    });
+  </script>
+</body>
+</html>
+```
+
+**Note**: If your plugin includes CSS, make sure to include it as well:
+```html
+<link href="plugins/mapinfo.css" rel="stylesheet">
 ```
 
 ## Common Patterns
@@ -522,6 +561,22 @@ const markerStyle = new Style({
 
 markerFeature.setStyle(markerStyle);
 ```
+
+**Note**: If you need OpenLayers features not exposed via `Origo.ol`, you can import OpenLayers directly:
+
+```javascript
+import Origo from 'Origo';
+import { getCenter } from 'ol/extent';
+import TileLayer from 'ol/layer/Tile';
+
+const MyPlugin = function MyPlugin(options = {}) {
+  // Plugin code using both Origo and direct OpenLayers imports
+};
+
+export default MyPlugin;
+```
+
+When importing OpenLayers directly, you don't need to externalize specific ol modules in your Vite config since Origo already includes OpenLayers. However, be aware that this may slightly increase your bundle size.
 
 ## Extension Points
 
