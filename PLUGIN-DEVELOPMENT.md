@@ -95,12 +95,12 @@ Controls are the most common type of plugin. They:
 Origo uses a lightweight component-based UI system. Every control must return a Component:
 
 ```javascript
-import { Component } from 'Origo.ui';
+import Origo from 'Origo';
 
 const MyPlugin = function MyPlugin(options = {}) {
   let viewer;
   
-  return Component({
+  return Origo.ui.Component({
     name: 'myplugin',
     
     onInit() {
@@ -165,7 +165,7 @@ my-map-info-plugin/
 Create `src/mapinfo.js`:
 
 ```javascript
-import { Component, Button, Modal, dom, Element as El } from 'Origo.ui';
+import Origo from 'Origo';
 
 const MapInfo = function MapInfo(options = {}) {
   const {
@@ -196,7 +196,7 @@ const MapInfo = function MapInfo(options = {}) {
   };
 
   const showInfo = function showInfo() {
-    modal = Modal({
+    modal = Origo.ui.Modal({
       title,
       content: getMapInfo(),
       target: viewer.getId()
@@ -204,7 +204,7 @@ const MapInfo = function MapInfo(options = {}) {
     this.addComponent(modal);
   };
 
-  return Component({
+  return Origo.ui.Component({
     name: 'mapinfo',
     
     onAdd(evt) {
@@ -253,11 +253,11 @@ export default defineConfig({
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      // Externalize dependencies that will be provided by Origo
-      external: ['ol', 'ol/layer', 'ol/source', 'ol/style', 'ol/geom'],
+      // Externalize Origo - it will be provided by the host application
+      external: ['Origo'],
       output: {
         globals: {
-          ol: 'ol'
+          Origo: 'Origo'
         }
       }
     }
@@ -373,13 +373,13 @@ onRender() {
 ### Adding a Button to the Map Tools (Toolbar)
 
 ```javascript
-import { Button, Element as El, dom } from 'Origo.ui';
+import Origo from 'Origo';
 
 onAdd(evt) {
   viewer = evt.target;
   const mapTools = viewer.getMain().getMapTools();
   
-  const button = Button({
+  const button = Origo.ui.Button({
     cls: 'o-my-tool padding-small icon-smaller round light box-shadow',
     click() {
       console.log('Toolbar button clicked');
@@ -395,7 +395,7 @@ onAdd(evt) {
 
 onRender() {
   const mapToolsId = viewer.getMain().getMapTools().getId();
-  const el = dom.html(button.render());
+  const el = Origo.ui.dom.html(button.render());
   document.getElementById(mapToolsId).appendChild(el);
   this.dispatch('render');
 }
@@ -404,10 +404,10 @@ onRender() {
 ### Creating a Modal Dialog
 
 ```javascript
-import { Modal } from 'Origo.ui';
+import Origo from 'Origo';
 
 const showModal = function showModal() {
-  const modal = Modal({
+  const modal = Origo.ui.Modal({
     title: 'My Dialog',
     content: '<p>Dialog content here</p>',
     target: viewer.getId(),
@@ -898,36 +898,11 @@ export default defineConfig({
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      // Externalize dependencies provided by Origo
-      external: [
-        'ol',
-        'ol/layer',
-        'ol/layer/Vector',
-        'ol/layer/Tile',
-        'ol/source',
-        'ol/source/Vector',
-        'ol/source/XYZ',
-        'ol/style',
-        'ol/style/Style',
-        'ol/style/Fill',
-        'ol/style/Stroke',
-        'ol/style/Circle',
-        'ol/geom',
-        'ol/geom/Point',
-        'ol/geom/LineString',
-        'ol/geom/Polygon',
-        'ol/format',
-        'ol/format/GeoJSON',
-        'ol/interaction',
-        'ol/proj'
-      ],
+      // Externalize Origo - it will be provided by the host application
+      external: ['Origo'],
       output: {
         globals: {
-          ol: 'ol',
-          'ol/layer': 'ol.layer',
-          'ol/source': 'ol.source',
-          'ol/style': 'ol.style',
-          'ol/geom': 'ol.geom'
+          Origo: 'Origo'
         }
       }
     }
@@ -1000,11 +975,12 @@ export default defineConfig({
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      external: ['ol'],
+      // Externalize Origo - provided by the host application
+      external: ['Origo'],
       output: {
         // Provide globals for UMD build
         globals: {
-          ol: 'ol'
+          Origo: 'Origo'
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') {
@@ -1319,7 +1295,7 @@ Test your plugin in:
 A simple plugin to toggle layer visibility:
 
 ```javascript
-import { Component, Button } from 'Origo.ui';
+import Origo from 'Origo';
 
 const LayerToggler = function LayerToggler(options = {}) {
   const { layerName, buttonText = 'Toggle Layer' } = options;
@@ -1335,7 +1311,7 @@ const LayerToggler = function LayerToggler(options = {}) {
     }
   };
 
-  return Component({
+  return Origo.ui.Component({
     name: 'layertoggler',
     
     onAdd(evt) {
@@ -1347,7 +1323,7 @@ const LayerToggler = function LayerToggler(options = {}) {
         return;
       }
 
-      button = Button({
+      button = Origo.ui.Button({
         cls: 'round light',
         text: buttonText,
         click: toggleLayer,
@@ -1375,7 +1351,7 @@ export default LayerToggler;
 Display current mouse coordinates:
 
 ```javascript
-import { Component, Element as El, dom } from 'Origo.ui';
+import Origo from 'Origo';
 
 const CoordinateDisplay = function CoordinateDisplay(options = {}) {
   const { decimals = 2 } = options;
@@ -1387,14 +1363,14 @@ const CoordinateDisplay = function CoordinateDisplay(options = {}) {
     return `X: ${coord[0].toFixed(decimals)}, Y: ${coord[1].toFixed(decimals)}`;
   };
 
-  return Component({
+  return Origo.ui.Component({
     name: 'coordinatedisplay',
     
     onAdd(evt) {
       viewer = evt.target;
       const map = viewer.getMap();
 
-      coordinateElement = El({
+      coordinateElement = Origo.ui.Element({
         tagName: 'div',
         cls: 'o-coordinate-display',
         style: 'position: absolute; bottom: 10px; right: 10px; background: white; padding: 5px; border-radius: 3px;'
@@ -1413,7 +1389,7 @@ const CoordinateDisplay = function CoordinateDisplay(options = {}) {
     },
     
     onRender() {
-      const el = dom.html(coordinateElement.render());
+      const el = Origo.ui.dom.html(coordinateElement.render());
       document.getElementById(viewer.getId()).appendChild(el);
       this.dispatch('render');
     },
@@ -1434,7 +1410,7 @@ export default CoordinateDisplay;
 Filter features in a layer:
 
 ```javascript
-import { Component, Button, Modal, Element as El } from 'Origo.ui';
+import Origo from 'Origo';
 
 const FeatureFilter = function FeatureFilter(options = {}) {
   const {
@@ -1487,7 +1463,7 @@ const FeatureFilter = function FeatureFilter(options = {}) {
 
   const showFilterDialog = function showFilterDialog() {
     const content = createFilterUI();
-    const modal = Modal({
+    const modal = Origo.ui.Modal({
       title,
       content,
       target: viewer.getId()
@@ -1509,7 +1485,7 @@ const FeatureFilter = function FeatureFilter(options = {}) {
     }, 100);
   };
 
-  return Component({
+  return Origo.ui.Component({
     name: 'featurefilter',
     
     onAdd(evt) {
